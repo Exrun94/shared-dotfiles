@@ -1,0 +1,207 @@
+gui:
+  theme:
+    inactiveBorderColor:
+      - "#27a1b9"
+    defaultFgColor:
+      - "#c0caf5"
+    cherryPickedCommitFgColor:
+      - "#7aa2f7"
+    cherryPickedCommitBgColor:
+      - "#9d7cd8"
+    activeBorderColor:
+      - "#ff9e64"
+      - "bold"
+    searchingActiveBorderColor:
+      - "#ff9e64"
+      - "bold"
+    unstagedChangesColor:
+      - "#db4b4b"
+    selectedLineBgColor:
+      - "#283457"
+    optionsTextColor:
+      - "#7aa2f7"
+  nerdFontsVersion: "3"
+  authorColors: {}
+  branchColors: {}
+  scrollHeight: 2
+  scrollPastBottom: true
+  mouseEvents: true
+  skipDiscardChangeWarning: false
+  skipStashWarning: false
+  sidePanelWidth: 0.3333
+  expandFocusedSidePanel: false
+  mainPanelSplitMode: flexible
+  language: auto
+  timeFormat: 02 Jan 06 15:04 MST
+  skipNoStagedFilesWarning: false
+  showListFooter: true
+  showFileTree: true
+  showRandomTip: true
+  showCommandLog: true
+  showBottomLine: true
+  showIcons: true
+  commandLogSize: 8
+  splitDiff: auto
+git:
+  overrideGpg: true
+  paging:
+    colorArg: always
+    pager: delta --true-color=always --diff-so-fancy --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  commit:
+    signOff: false
+  merging:
+    manualCommit: false
+    args: ""
+  skipHookPrefix: WIP
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  disableForcePushing: false
+  commitPrefixes: {}
+  parseEmoji: false
+  log:
+    order: topo-order
+    showGraph: when-maximised
+    showWholeGraph: false
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
+update:
+  method: prompt
+  days: 14
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+confirmOnQuit: false
+quitOnTopLevelReturn: false
+services:
+  "github.com": "github:github.com"
+  "gitlab.siteground.com": "gitlab:gitlab.siteground.com"
+  "gitlab.1h.com": "gitlab:gitlab.1h.com"
+keybinding:
+  universal:
+    prevItem: "k"
+    nextItem: "j"
+    prevBlock: "<up>"
+    nextBlock: "<down>"
+    nextTab: "<right>"
+    prevTab: "<left>"
+  branches:
+    copyPullRequestURL: "y"
+customCommands:
+  - command: git -c core.pager="delta" diff {{.SelectedLocalCommit.Sha}}^ {{.SelectedLocalCommit.Sha}}
+    context: commits
+    description: full-screen diff of selected commit
+    key: <c-f>
+    output: terminal
+  - key: "H"
+    context: "localBranches"
+    prompts:
+      - type: "confirm"
+        title: "Hard Reset"
+        body: "Are you sure you want to hard reset to remote? This will lose all local changes!"
+        key: "Confirm"
+    command: "git reset --hard origin/{{.CheckedOutBranch.Name}}"
+    loadingText: "Performing hard reset"
+    description: "Hard reset to remote branch"
+  - key: "M"
+    command: "git mergetool {{ .SelectedFile.Name }}"
+    context: "files"
+    loadingText: "opening git mergetool"
+    output: terminal
+  - key: "G"
+    description: "View Custom Reset Options"
+    context: "localBranches"
+    prompts:
+      - type: "menu"
+        key: "Branch"
+        title: "Choose HARD Reset Options"
+        options:
+          - name: "Reset with remote Master"
+            value: "origin/master"
+          - name: "Reset with remote Main"
+            value: "origin/main"
+          - name: "Reset with remote branch"
+            value: "origin/{{ .Form.Branch }}"
+    command: "git reset --hard {{ .Form.Branch }}"
+  - key: "<c-f>"
+    description: "fetch a remote branch as a new local branch"
+    command: "git fetch {{index .SelectedRemote.Name }} {{index .PromptResponses 0}}:{{index .PromptResponses 1}}"
+    context: "remotes"
+    prompts:
+      - type: "input"
+        title: "Remote Branch Name"
+        initialValue: ""
+      - type: "input"
+        title: "New Local Branch Name"
+        initialValue: ""
+    loadingText: "fetching branch"
+  - key: "<c-p>"
+    command: "git remote prune {{.SelectedRemote.Name}}"
+    context: "remotes"
+    loadingText: "Pruning..."
+    description: "prune deleted remote branches"
+  # something is wrong here and need to figure the error why it doesnt load the difftool1
+  - key: "f"
+    command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
+    context: "commitFiles"
+    description: "Compare (difftool) with local copy"
+  - key: "C"
+    context: "files"
+    description: "Create new conventional commit"
+    prompts:
+      - type: "menu"
+        key: "Type"
+        title: "Type of change"
+        options:
+          - name: "build"
+            description: "Changes that affect the build system or external dependencies"
+            value: "build: "
+          - name: "feat"
+            description: "A new feature"
+            value: "feat: "
+          - name: "fix"
+            description: "A bug fix"
+            value: "fix: "
+          - name: "chore"
+            description: "Other changes that don't modify src or test files"
+            value: "chore: "
+          - name: "ci"
+            description: "Changes to CI configuration files and scripts"
+            value: "ci: "
+          - name: "docs"
+            description: "Documentation only changes"
+            value: "docs: "
+          - name: "perf"
+            description: "A code change that improves performance"
+            value: "perf: "
+          - name: "refactor"
+            description: "A code change that neither fixes a bug nor adds a feature"
+            value: "refactor: "
+          - name: "revert"
+            description: "Reverts a previous commit"
+            value: "revert: "
+          - name: "style"
+            description: "Changes that do not affect the meaning of the code"
+            value: "style: "
+          - name: "test"
+            description: "Adding missing tests or correcting existing tests"
+            value: "test: "
+      - type: "menuFromCommand"
+        title: "Select a branch"
+        key: "Branch"
+        command: "git branch --show-current"
+      - type: "input"
+        title: "message"
+        key: "Message"
+        initialValue: ""
+      - type: "confirm"
+        key: "Confirm"
+        title: "Commit"
+        body: "Are you sure you want to commit?"
+    command: "git commit --message '{{.Form.Type}}[{{.Form.Branch}}] {{.Form.Message}}'"
+    loadingText: "Creating conventional commit..."
+os:
+  editPreset: "nvim"
+disableStartupPopups: false
+notARepository: skip
+promptToReturnFromSubprocess: true

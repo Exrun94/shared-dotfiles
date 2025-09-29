@@ -1,0 +1,76 @@
+
+[user]
+  name = Your Name
+  email = youremail@example.com
+[color]
+  ui = true
+[core]
+  editor = nvim
+  excludesfile = ~/.globalgitignore
+	pager = 
+[diff]
+  algorithm = patience
+  compactionHeuristic = true
+  tool = nvimdiff
+[merge]
+    tool = nvim
+[mergetool]
+    keepBackup = false
+    prompt = false
+[mergetool "nvim"]
+    cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c DiffviewOpen"
+[commit]
+  verbose = true
+	; gpgsign = true
+[pull]
+  rebase = true
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  side-by-side = true
+  navigate = true
+  dark = true
+
+  minus-style                   = syntax "#37222c"
+  minus-non-emph-style          = syntax "#37222c"
+  minus-emph-style              = syntax "#713137"
+  minus-empty-line-marker-style = syntax "#37222c"
+  line-numbers-minus-style      = "#914c54"
+  plus-style                    = syntax "#20303b"
+  plus-non-emph-style           = syntax "#20303b"
+  plus-emph-style               = syntax "#2c5a66"
+  plus-empty-line-marker-style  = syntax "#20303b"
+  line-numbers-plus-style       = "#449dab"
+  line-numbers-zero-style       = "#3b4261"
+
+  # File decoration
+  file-style                    = "#7aa2f7" bold
+  file-decoration-style         = "#7aa2f7" ul
+  file-added-label              = [󰐕]
+  file-copied-label             = [󰆏]
+  file-modified-label           = [󰏫]
+  file-removed-label            = [󰍴]
+  file-renamed-label            = [󰁔]
+
+  # Navigation and display
+  navigate                      = true
+  hyperlinks                    = true
+  side-by-side                  = true
+  keep-plus-minus-markers       = false
+[push]
+  autoSetupRemote = true
+[init]
+  defaultBranch = main
+[maintenance]
+[rerere]
+	enabled = true
+
+[alias]
+  fixup = "!fn() { _FIXUP_COMMIT=`git rev-parse ${1}` && git commit -m \"fixup! ${_FIXUP_COMMIT}\" && git diff --quiet || STASHED=true && git stash push -m \"fixup-temp-stash\" && GIT_EDITOR=true git rebase --autosquash -i ${_FIXUP_COMMIT}^ && [ \"$STASHED\" = true ] && git stash pop; }; fn"
+	tree = log --all --decorate --oneline --graph
+	yolo = !git add -A && git commit --amend --no-edit && git push --force-with-lease
+	ai = ! ~/dotfiles/zsh_scripts/ai_commit.sh
+	s = status
+	sc = sparse-checkout
+	wt = worktree
+

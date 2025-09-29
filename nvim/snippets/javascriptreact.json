@@ -1,0 +1,50 @@
+{
+  "fix (Add Fix comment)": {
+    "body": "\/\/ FIX: ${1:comment}",
+    "prefix": "@fix (Add Fix comment)"
+  },
+  "hack (Add Hack Comment)": {
+    "body": "\/\/ HACK: ${1:comment}",
+    "prefix": "hack (Add Hack Comment)"
+  },
+  "todo (Add TODO comment)": {
+    "body": "\/\/ TODO: ${1:comment}",
+    "prefix": "todo (Add TODO comment)"
+  },
+  "ifm (Intl)": {
+    "body": ["{intl.formatMessage({ id: '${1:key}' })}", "$0"],
+    "prefix": "ifm (Intl)"
+  },
+  "note (Add Note comment)": {
+    "body": "\/\/ NOTE: ${1:comment}",
+    "prefix": "note (Add Note comment)"
+  },
+  "rus (Use State Hook)": {
+    "body": "const [${1:state}, set${1\/(.*)\/${1:\/capitalize}\/}] = useState(${2:initValue});$0",
+    "prefix": "us (Use State Hook)"
+  },
+  "destruct (Desctucture Object)": {
+    "body": "const { ${0:} } = ${1:object}",
+    "prefix": "destruct (Desctucture Object)"
+  },
+  "log (console.log)": {
+    "body": "console.log(${1:msg})",
+    "prefix": "cl (console.log)"
+  },
+  "rfc (React Functional Component)": {
+    "body": [
+      "import React from 'react'",
+      "",
+      "const ${1:Component} = () => {",
+      "${0:}",
+      "  return (",
+      "    <div>Hello from ${1:Component}<\/div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:Component};"
+    ],
+    "prefix": "rfc (React Functional Component)"
+  }
+}
+

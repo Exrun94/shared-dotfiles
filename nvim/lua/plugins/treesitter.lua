@@ -1,0 +1,45 @@
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "astro",
+        "bash",
+        "c",
+        "css",
+        "html",
+        "http",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "scss",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "go",
+        "templ",
+        "xml",
+      },
+      auto_install = true,
+    },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    opts = {},
+  },
+  {
+    "GeorgiChochev/jsx-element.nvim",
+    ft = { "typescriptreact", "javascriptreact", "javascript" },
+    enabled = false,
+    opts = {},
+  },
+  {
+    "nvim-treesitter/playground",
+    enabled = false,
+    event = "VeryLazy",
+  },
+}

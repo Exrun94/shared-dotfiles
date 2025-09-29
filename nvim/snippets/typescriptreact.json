@@ -1,0 +1,162 @@
+{
+  "fmb - { intl.formatMessage }": {
+    "body": "{intl.formatMessage({ id: '${1:key}' })}",
+    "prefix": "intlfmb"
+  },
+  "tsus (Typed React useState Hook)": {
+    "body": [
+      "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState<${3:StateType}>(${2:initValue});",
+      "$0"
+    ],
+    "prefix": "tsus"
+  },
+  "todo (Add TODO comment)": {
+    "body": "// TODO: ${1:comment}",
+    "prefix": "todo (Add TODO comment)"
+  },
+  "rus (Use State Hook)": {
+    "body": "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:initValue});$0",
+    "prefix": "us (Use State Hook)"
+  },
+  "note (Add Note comment)": {
+    "body": "// NOTE: ${1:comment}",
+    "prefix": "note (Add Note comment)"
+  },
+  "fm - intl.formattedMessage()": {
+    "body": "intl.formatMessage({ id: '${1:key}' })",
+    "prefix": "intlfm"
+  },
+  "tsue": {
+    "body": "useEffect(() => {${1:TODO}}, [${2:Deps}]);",
+    "prefix": "tsue"
+  },
+  "rfc (React Functional Component)": {
+    "description": "some rfc test",
+    "prefix": "rfc",
+    "body": [
+      "import React from 'react'",
+      "",
+      "const ${1:Component} = () => {",
+      "${0:}",
+      "  return (",
+      "    <div>Hello from ${1:Component}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:Component};"
+    ]
+  },
+  "fix (Add Fix comment)": {
+    "body": "// FIX: ${1:comment}",
+    "prefix": "fix (Add Fix comment)"
+  },
+  "destruct (Desctucture Object)": {
+    "body": "const { ${0:} } = ${1:object}",
+    "prefix": "destructObject"
+  },
+  "rfcp (React Component with Props)": {
+    "body": [
+      "import React from 'react'",
+      "",
+      "interface Props {}",
+      "",
+      "const ${1:Component}: React.FC<Props> = ({${2:props}}) => {",
+      "  ${0:}",
+      "  return (",
+      "    <div>Hello from ${1:Component}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:Component};"
+    ],
+    "prefix": "tsrfcp"
+  },
+  "Create Context Store": {
+    "description": "Create a sample context store for an easy start",
+    "prefix": "Create Context Store",
+    "body": [
+      "import React, { Dispatch, createContext, useReducer } from 'react';",
+      "import { HTTP_REQUEST_FINISHED, HTTP_REQUEST_STARTED } from './constants';",
+      "import { ActionTypes, State } from './types';",
+      "",
+      "const initialState: State = {",
+      "  isLoading: false,",
+      "  config: {",
+      "    initialPath: '',",
+      "    language: '',",
+      "    signUpUrl: '',",
+      "    recaptchaToken: ''",
+      "  }",
+      "};",
+      "",
+      "  ",
+      "",
+      "",
+      "const StoreContext = createContext<{state: State; dispatch: Dispatch<ActionTypes>;}>({",
+      "  state: initialState,",
+      "  dispatch: () => null",
+      "});",
+      "",
+      "  ",
+      "",
+      "",
+      "const StoreProvider = ({ children, config }) => {",
+      "  const defaultState = {",
+      "  ...initialState,",
+      "  config: {",
+      "    ...initialState.config,",
+      "    ...config,",
+      "    language: config.language.split('\\_').shift();",
+      "    }",
+      "  };",
+      "",
+      "  ",
+      "",
+      "",
+      "const [state, dispatch] = useReducer((state: State, action: ActionTypes) => {",
+      "",
+      "  switch (action.type) {",
+      "    case HTTP_REQUEST_STARTED:",
+      "    return { ...state, isLoading: true };",
+      "    case HTTP_REQUEST_FINISHED:",
+      "    return { ...state, isLoading: false };",
+      "    default:",
+      "    return state;",
+      "  }",
+      "",
+      "}, defaultState);",
+      "",
+      "  return <StoreContext.Provider value={{ state, dispatch }}>{children}</StoreContext.Provider>;",
+      "};",
+      "",
+      "export { StoreContext, StoreProvider };"
+    ]
+  },
+  "hack (Add Hack Comment)": {
+    "body": "// HACK: ${1:comment}",
+    "prefix": "hack (Add Hack Comment)"
+  },
+  "destructArray": {
+    "body": "const [ ${0:} ] = ${1:array}",
+    "prefix": "destructArray"
+  },
+  "tsrfc (React Functional Component)": {
+    "body": [
+      "import React from 'react'",
+      "",
+      "const ${1:Component}: React.FC = () => {",
+      "${0:}",
+      "  return (",
+      "    <div>Hello from ${1:Component}</div>",
+      "  )",
+      "}",
+      "",
+      "export default ${1:Component};"
+    ],
+    "prefix": "tsrfc"
+  },
+  "log (console.log)": {
+    "body": "console.log(${1:msg})",
+    "prefix": "clg"
+  }
+}

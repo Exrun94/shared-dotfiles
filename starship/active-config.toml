@@ -1,0 +1,191 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+# Increased because of timeout issues in spa-packages dir
+command_timeout = 10000
+
+# This will show the time on a 2nd line
+# Add a "\" at the end of an item, if you want the next item to show on the same line
+format = """
+$username\
+$hostname\
+$all\
+$directory
+$character
+"""
+
+[git_status]
+untracked = '[ $count](bold yellow) '
+staged = '[ $count](bold green) '
+stashed = "[ ](cyan) "
+deleted = '[ $count](bold red) '
+modified = '[ $count](bold blue) '
+behind = '[ ](bold purple) '
+ahead = '[ ](bold purple) '
+format = '([$all_status$ahead_behind]($style))'
+
+[character]
+success_symbol = '[❯❯❯❯](#37f499 bold)'
+error_symbol = '[XXXX](#f16c75 bold)'
+vimcmd_symbol = '[❮❮❮❮](#987afb bold)'
+
+[battery]
+disabled = true
+
+[gcloud]
+disabled = true
+
+
+[username]
+style_user = '#987afb bold'
+style_root = 'white bold'
+format = '[$user ]($style)'
+show_always = true
+
+[hostname]
+ssh_only = true
+format = '(white bold)[$hostname](#37f499 bold)'
+ssh_symbol = " "
+
+[directory]
+style = '#04d1f9 bold'
+truncation_length = 0
+truncate_to_repo = false
+read_only = " 󰌾"
+
+[lua]
+detect_folders = []
+symbol = " "
+
+[git_metrics]
+disabled = false
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = "⌘ "
+
+[hg_branch]
+symbol = " "
+
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
+
+[package]
+symbol = "󰏗 "
+
+[pijul_channel]
+symbol = "🪺 "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
